@@ -1,27 +1,30 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
-function Nav(props) {
+function Nav({ searchPictures }) {
+  const selectPictures = (topic) => {
+    searchPictures(topic)
+  }
+
   return (
     <div>
-      <nav class="main-nav">
+      <nav className="main-nav">
         <ul>
           <li>
-            <a href="#">Cats</a>
+            <NavLink to="/skydiving" isActive={selectPictures('Skydiving')}>
+              Skydiving
+            </NavLink>
           </li>
           <li>
-            <a href="#">Dogs</a>
+            <NavLink to="/drums">Drums</NavLink>
           </li>
           <li>
-            <a href="#">Computers</a>
+            <NavLink to="/blacklabs">Blacklabs</NavLink>
           </li>
         </ul>
       </nav>
     </div>
   )
 }
-
-Nav.propTypes = {}
 
 export default Nav

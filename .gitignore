@@ -25,5 +25,5 @@ yarn-error.log*
 # Project Referances
 /referance_files
 
-#Api config
+# Api config
 config.js
