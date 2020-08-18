@@ -32,7 +32,10 @@ function App() {
           const result = await axios(
             `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
           )
-          setNavData({ ...navData, [topic]: result.data.photos.photo })
+          setNavData((prevState) => ({
+            ...prevState,
+            [topic]: result.data.photos.photo,
+          }))
         } catch (err) {
           console.log(new Error(err))
         }
@@ -64,20 +67,29 @@ function App() {
       <div className="container">
         <SearchForm searchPictures={searchPictures} />
         <Nav />
-        {isLoading ? <h2>Loading...</h2> : null}
         <Switch>
-          <Route exact path="/" render={() => <Gallery data={searchData} />} />
+          <Route
+            exact
+            path="/"
+            render={() => <Gallery data={searchData} isLoading={isLoading} />}
+          />
           <Route
             path="/skydiving"
-            render={() => <Gallery data={navData.skydiving} />}
+            render={() => (
+              <Gallery data={navData.skydiving} isLoading={isLoading} />
+            )}
           />
           <Route
             path="/drums"
-            render={() => <Gallery data={navData.drums} />}
+            render={() => (
+              <Gallery data={navData.drums} isLoading={isLoading} />
+            )}
           />
           <Route
             path="/blacklabs"
-            render={() => <Gallery data={navData.blacklabs} />}
+            render={() => (
+              <Gallery data={navData.blacklabs} isLoading={isLoading} />
+            )}
           />
           <Route component={NotFound} />
         </Switch>

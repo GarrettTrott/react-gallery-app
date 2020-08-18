@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 function SearchForm({ searchPictures }) {
@@ -25,7 +26,10 @@ function SearchForm({ searchPictures }) {
           onChange={onChange}
           required
         />
-        <button type="submit" className="search-button">
+        <button
+          type="submit"
+          className="search-button"
+          onClick={<Redirect to="/" />}>
           <svg
             fill="#fff"
             height="24"

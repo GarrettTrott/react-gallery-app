@@ -2,7 +2,7 @@ import React from 'react'
 import Photo from './Photo'
 import PropTypes from 'prop-types'
 
-function Gallery({ data }) {
+function Gallery({ data, isLoading }) {
   let pics = data.map((pic) => (
     <Photo
       key={pic.id}
@@ -11,7 +11,7 @@ function Gallery({ data }) {
   ))
   return (
     <div className="photo-container">
-      <h2>Results</h2>
+      {isLoading ? <h2>Loading...</h2> : <h2>Results</h2>}
       <ul>{pics}</ul>
     </div>
   )
@@ -19,5 +19,6 @@ function Gallery({ data }) {
 
 Gallery.propTypes = {
   data: PropTypes.array,
+  isLoading: PropTypes.bool,
 }
 export default Gallery
