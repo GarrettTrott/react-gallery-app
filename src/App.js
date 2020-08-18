@@ -17,50 +17,47 @@ function App() {
     drums: [],
     blacklabs: [],
   })
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [query, setQuery] = useState()
 
   const searchPictures = (search) => {
     setQuery(search)
   }
 
-  const searchPhotos = async (topic) => {
-    setIsLoading(true)
-    try {
-      const result = await axios(
-        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
-      )
-      await setSearchData(result.data.photos.photo)
-      setIsLoading(false)
-    } catch (err) {
-      console.log(new Error(err))
+  useEffect(() => {
+    const getNavData = async () => {
+      setIsLoading(true)
+      for (const topic in navData) {
+        try {
+          const result = await axios(
+            `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
+          )
+          setNavData({ ...navData, [topic]: result.data.photos.photo })
+        } catch (err) {
+          console.log(new Error(err))
+        }
+      }
       setIsLoading(false)
     }
-  }
+    getNavData()
+  }, [])
 
-  const getNavData = async () => {
-    setIsLoading(true)
-    for (let topic in navData) {
+  useEffect(() => {
+    const searchPhotos = async (topic) => {
+      setIsLoading(true)
       try {
         const result = await axios(
           `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
         )
-        setNavData({ ...navData, [topic]: result.data.photos.photo })
+        await setSearchData(result.data.photos.photo)
+        setIsLoading(false)
       } catch (err) {
         console.log(new Error(err))
+        setIsLoading(false)
       }
     }
-    setIsLoading(false)
-  }
-
-  useEffect(() => {
-    setIsLoading(true)
     searchPhotos(query)
   }, [query])
-
-  useEffect(() => {
-    getNavData()
-  }, [])
 
   return (
     <Router>
