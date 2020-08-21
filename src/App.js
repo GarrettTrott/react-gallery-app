@@ -23,40 +23,37 @@ function App() {
     setQuery(search)
   }
 
+  const getFlickerData = async (topic) => {
+    setIsLoading(true)
+    try {
+      const result = await axios(
+        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
+      )
+      return result
+    } catch (err) {
+      console.log(new Error(err))
+    }
+    setIsLoading(false)
+  }
+
+  // Get API data for Naviagtion links
   useEffect(() => {
     const getNavData = async () => {
-      setIsLoading(true)
       for (const topic in navData) {
-        try {
-          const result = await axios(
-            `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
-          )
-          setNavData((prevState) => ({
-            ...prevState,
-            [topic]: result.data.photos.photo,
-          }))
-        } catch (err) {
-          console.log(new Error(err))
-        }
+        let result = await getFlickerData(topic)
+        setNavData((prevState) => ({
+          ...prevState,
+          [topic]: result.data.photos.photo,
+        }))
       }
-      setIsLoading(false)
     }
     getNavData()
   }, [])
 
   useEffect(() => {
     const searchPhotos = async (topic) => {
-      setIsLoading(true)
-      try {
-        const result = await axios(
-          `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
-        )
-        setSearchData(result.data.photos.photo)
-        setIsLoading(false)
-      } catch (err) {
-        console.log(new Error(err))
-        setIsLoading(false)
-      }
+      let result = await getFlickerData(topic)
+      setSearchData(result.data.photos.photo)
     }
     searchPhotos(query)
   }, [query])
