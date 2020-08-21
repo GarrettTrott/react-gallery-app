@@ -2,10 +2,10 @@ import React from 'react'
 
 function NotFound() {
   return (
-    <li className="not-found">
-      <h3>No Results Found</h3>
-      <p>You search did not return any results. Please try again.</p>
-    </li>
+    <div className="not-found">
+      <h2>404 Not Found</h2>
+      <h3>Please try another route</h3>
+    </div>
   )
 }
 

@@ -9,12 +9,21 @@ function Gallery({ data, isLoading }) {
       url={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`}
     />
   ))
-  return (
-    <div className="photo-container">
-      {isLoading ? <h2>Loading...</h2> : <h2>Results</h2>}
-      <ul>{pics}</ul>
-    </div>
-  )
+  if (data.length === 0 && isLoading === false) {
+    return (
+      <div className="not-found">
+        <h2>No Results Found</h2>
+        <h3>You search did not return any results. Please try again.</h3>
+      </div>
+    )
+  } else {
+    return (
+      <div className="photo-container">
+        {isLoading ? <h2>Loading...</h2> : <h2>Results</h2>}
+        <ul>{pics}</ul>
+      </div>
+    )
+  }
 }
 
 Gallery.propTypes = {

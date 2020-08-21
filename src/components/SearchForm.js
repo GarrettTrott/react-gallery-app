@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 function SearchForm({ searchPictures }) {
   const [text, setText] = useState('')
+  let history = useHistory()
 
   const onChange = (e) => {
     setText(e.target.value)
@@ -13,6 +14,7 @@ function SearchForm({ searchPictures }) {
     e.preventDefault()
     searchPictures(text)
     setText('')
+    history.push('/')
   }
 
   return (
@@ -26,10 +28,7 @@ function SearchForm({ searchPictures }) {
           onChange={onChange}
           required
         />
-        <button
-          type="submit"
-          className="search-button"
-          onClick={<Redirect to="/" />}>
+        <button type="submit" className="search-button">
           <svg
             fill="#fff"
             height="24"

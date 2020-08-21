@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
 import axios from 'axios'
-import apiKey from './config.js'
 
 // Component imports
+import apiKey from './config.js'
 import Nav from './components/Nav'
 import SearchForm from './components/SearchForm'
 import Gallery from './components/Gallery'
@@ -12,13 +11,13 @@ import NotFound from './components/NotFound'
 
 function App() {
   const [searchData, setSearchData] = useState([])
+  const [query, setQuery] = useState()
+  const [isLoading, setIsLoading] = useState(true)
   const [navData, setNavData] = useState({
     skydiving: [],
     drums: [],
     blacklabs: [],
   })
-  const [isLoading, setIsLoading] = useState(false)
-  const [query, setQuery] = useState()
 
   const searchPictures = (search) => {
     setQuery(search)
@@ -52,7 +51,7 @@ function App() {
         const result = await axios(
           `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
         )
-        await setSearchData(result.data.photos.photo)
+        setSearchData(result.data.photos.photo)
         setIsLoading(false)
       } catch (err) {
         console.log(new Error(err))
