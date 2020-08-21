@@ -10,6 +10,7 @@ function SearchForm({ searchPictures }) {
     setText(e.target.value)
   }
 
+  // Submit handler and redirect to home route
   const onSubmit = (e) => {
     e.preventDefault()
     searchPictures(text)

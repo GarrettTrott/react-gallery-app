@@ -2,6 +2,28 @@
 
 A simple photo searching app using the flicker API.
 
+## Built With
+
+- [React](https://reactjs.org/)
+
+## Tested on
+
+- Chrome
+- Safari
+- Firefox
+
+## Authors
+
+- **Garrett Trott** - garretttrott@gmail.com
+
+## License
+
+This project is licensed under the MIT License
+
+## Acknowledgments
+
+- Treehouse project #7
+
 ---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -10,9 +10,10 @@ import Gallery from './components/Gallery'
 import NotFound from './components/NotFound'
 
 function App() {
+  // Application State
   const [searchData, setSearchData] = useState([])
   const [query, setQuery] = useState()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [navData, setNavData] = useState({
     skydiving: [],
     drums: [],
@@ -33,10 +34,9 @@ function App() {
     } catch (err) {
       console.log(new Error(err))
     }
-    setIsLoading(false)
   }
 
-  // Get API data for Naviagtion links
+  // Get API data for navigation links
   useEffect(() => {
     const getNavData = async () => {
       for (const topic in navData) {
@@ -46,14 +46,18 @@ function App() {
           [topic]: result.data.photos.photo,
         }))
       }
+      setIsLoading(false)
     }
     getNavData()
+    // eslint-disable-next-line
   }, [])
 
+  // Get photo search query
   useEffect(() => {
     const searchPhotos = async (topic) => {
       let result = await getFlickerData(topic)
       setSearchData(result.data.photos.photo)
+      setIsLoading(false)
     }
     searchPhotos(query)
   }, [query])

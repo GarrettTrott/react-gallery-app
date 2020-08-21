@@ -3,12 +3,14 @@ import Photo from './Photo'
 import PropTypes from 'prop-types'
 
 function Gallery({ data, isLoading }) {
+  // Populate gallery with pictures
   let pics = data.map((pic) => (
     <Photo
       key={pic.id}
       url={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`}
     />
   ))
+  // No results
   if (data.length === 0 && isLoading === false) {
     return (
       <div className="not-found">

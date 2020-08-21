@@ -62,7 +62,8 @@ input {
 .main-nav .active,
 .main-nav a:hover,
 .search-form button:hover {
-  background-color: #275270;
+  background-color: #a270ff;
+  color: #fff;
 }
 
 .photo-container ul {
