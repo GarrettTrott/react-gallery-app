@@ -26,4 +26,4 @@ yarn-error.log*
 /referance_files
 
 # Api config
-config.js
+.env
