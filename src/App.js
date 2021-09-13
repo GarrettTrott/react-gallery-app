@@ -1,13 +1,15 @@
+
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 
 // Component imports
-import apiKey from './config.js'
 import Nav from './components/Nav'
 import SearchForm from './components/SearchForm'
 import Gallery from './components/Gallery'
 import NotFound from './components/NotFound'
+
+const { REACT_APP_API_KEY } = process.env
 
 function App() {
   // Application State
@@ -28,7 +30,7 @@ function App() {
     setIsLoading(true)
     try {
       const result = await axios(
-        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
+        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${REACT_APP_API_KEY}&tags=${topic}&per_page=24&format=json&nojsoncallback=1`
       )
       return result
     } catch (err) {
