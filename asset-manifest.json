@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/GarrettTrott/react-gallery-app/static/css/main.532469c8.chunk.css",
+    "main.js": "/GarrettTrott/react-gallery-app/static/js/main.b310b1ba.chunk.js",
+    "main.js.map": "/GarrettTrott/react-gallery-app/static/js/main.b310b1ba.chunk.js.map",
+    "runtime-main.js": "/GarrettTrott/react-gallery-app/static/js/runtime-main.8f51ff95.js",
+    "runtime-main.js.map": "/GarrettTrott/react-gallery-app/static/js/runtime-main.8f51ff95.js.map",
+    "static/js/2.9892e185.chunk.js": "/GarrettTrott/react-gallery-app/static/js/2.9892e185.chunk.js",
+    "static/js/2.9892e185.chunk.js.map": "/GarrettTrott/react-gallery-app/static/js/2.9892e185.chunk.js.map",
+    "index.html": "/GarrettTrott/react-gallery-app/index.html",
+    "precache-manifest.4ccd7856c1ebe95bdc72327f267511f2.js": "/GarrettTrott/react-gallery-app/precache-manifest.4ccd7856c1ebe95bdc72327f267511f2.js",
+    "service-worker.js": "/GarrettTrott/react-gallery-app/service-worker.js",
+    "static/css/main.532469c8.chunk.css.map": "/GarrettTrott/react-gallery-app/static/css/main.532469c8.chunk.css.map",
+    "static/js/2.9892e185.chunk.js.LICENSE.txt": "/GarrettTrott/react-gallery-app/static/js/2.9892e185.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8f51ff95.js",
+    "static/js/2.9892e185.chunk.js",
+    "static/css/main.532469c8.chunk.css",
+    "static/js/main.b310b1ba.chunk.js"
+  ]
+}
